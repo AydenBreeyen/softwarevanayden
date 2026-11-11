@@ -1,0 +1,309 @@
+/* Software van Ayden — op verzoek gebaseerd op de vormgeving van larce.nl.
+   Crème papier, Bricolage/Inter, blauwe accenten en donkere dienstensectie. */
+/* Fonts zelf gehost (SIL Open Font License), geen verzoeken naar Google;
+   gewichtsas ingeperkt tot wat de site gebruikt (Bricolage 500-700, Inter 400-700) */
+@font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:500 700;font-display:swap;src:url(assets/fonts/bricolage-grotesque-latin.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/inter-latin.woff2) format("woff2")}
+:root{
+  --paper:#f4efe6;--paper-2:#ebe4d6;--card:#fffdf8;--ink:#1a1814;--ink-2:#2b2822;--muted:#5f594f;--line:#d8cfbf;
+  --on-ink:#f4efe6;--on-ink-muted:#d4ccbd;--on-ink-line:#4a453c;
+  /* merkkleur = kleur van de stip in het Larce-logo (#315FDB); de lichte tinten zijn alleen vlakken */
+  --accent:#315fdb;--accent-ink:#315fdb;--accent-light:#9db8ff;--accent-soft:#dde5fa;--accent-line:#b8c6ef;
+  --display:"Bricolage Grotesque","Segoe UI",Arial,sans-serif;--body:Inter,"Segoe UI",Arial,sans-serif;
+  --max:1240px;--gutter:28px;--radius:18px;--radius-lg:28px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+/* koppen evenwichtig afbreken: geen los woord op de laatste regel */
+h1,h2,h3{text-wrap:balance}
+a{color:var(--accent-ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+/* hover-overgangen: 0,25 s fade */
+a,.btn,.worklink,.worklink .go,.mnav summary,.mnav a{transition:color .25s ease,background-color .25s ease,border-color .25s ease,box-shadow .25s ease,text-decoration-color .25s ease,transform .1s ease}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:16px;top:-60px;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:8px;z-index:10}
+.skip:focus{top:16px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.logo{display:block;width:112px;height:auto}
+
+/* knoppen */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;background:var(--ink);color:var(--paper);font:600 16px/1.2 var(--body);text-decoration:none;border:0;cursor:pointer}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.light{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.btn.onink{background:var(--paper);color:var(--ink)}
+
+/* header */
+header.top .wrap{display:flex;align-items:center;gap:28px;min-height:84px}
+.top .mainnav{display:flex;gap:26px;margin-left:auto;font-weight:500;font-size:15px}
+.top .mainnav a{color:var(--ink);text-decoration:none}
+.top .actions{display:flex;gap:10px}
+
+/* hero */
+.hero{padding:40px 0 64px}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(40px,7.4vw,104px);line-height:.95;letter-spacing:-.035em;margin:0;max-width:13ch;overflow-wrap:break-word}
+.dot{color:var(--accent)}
+.hero .row{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;margin-top:36px;align-items:end}
+.hero .lead{font-size:20px;line-height:1.5;margin:0;max-width:44ch}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+
+/* secties */
+section.blk{padding:96px 0}
+.blk h2,.h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,4.4vw,56px);line-height:1;letter-spacing:-.03em;margin:0 0 18px}
+.intro{max-width:58ch;font-size:19px;margin:0 0 44px}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+
+/* werk */
+.showcase{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:auto auto;gap:24px}
+.project{background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column}
+.project.big{grid-row:span 2}
+.shot{position:relative;background:var(--paper-2);border-bottom:1px solid var(--line);overflow:hidden}
+.shot > img.desk{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.project:not(.big) .shot > img.desk{aspect-ratio:16/8.5}
+.project.big .shot{padding:28px 28px 0}
+.project.big .shot > img.desk{border-radius:10px 10px 0 0;box-shadow:0 0 0 1px var(--line)}
+@media (min-width:901px){
+  .project.big .shot{flex:1 1 auto;display:flex;flex-direction:column}
+  .project.big .shot > img.desk{flex:1 1 auto;height:0;min-height:100%;aspect-ratio:auto}
+}
+.phone{position:absolute;right:28px;bottom:-40px;width:24%;border-radius:18px;border:6px solid var(--ink);box-shadow:0 10px 30px rgba(26,24,20,.25);aspect-ratio:9/17;object-fit:cover;object-position:top}
+.project .info{padding:22px 24px 24px;display:flex;flex-direction:column;gap:6px}
+.project .kind{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.project h3{font-family:var(--display);font-weight:700;font-size:28px;letter-spacing:-.02em;line-height:1.1;margin:0}
+.project.big h3{font-size:36px}
+.project p{margin:0}
+.project a{font-weight:600}
+
+/* link naar het werk op web.larce.nl */
+.worklink{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:36px 40px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);color:var(--ink);text-decoration:none}
+.worklink .kicker{display:block}
+.worklink .t{display:block;font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-.025em;margin:0}
+.worklink .d{display:block;margin-top:10px;color:var(--muted);max-width:56ch}
+.worklink .go{flex:none;display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 24px;border-radius:999px;background:var(--ink);color:var(--paper);font-weight:600}
+.worklink .go svg{width:18px;height:18px}
+
+/* prijzen */
+.prices{background:var(--ink);color:var(--on-ink);border-radius:var(--radius-lg);padding:64px}
+.prices .intro{color:var(--on-ink-muted)}
+.prices :focus-visible{outline-color:var(--accent-light)}
+.plist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:0;padding:0;list-style:none}
+.plist > li{padding:0 32px 0 0}
+.plist > li + li{padding-left:32px;border-left:1px solid var(--on-ink-line)}
+.amt{display:block;font-family:var(--display);font-weight:700;font-size:56px;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.amt small{font-size:20px;font-weight:500;letter-spacing:0}
+.vat{display:block;font-family:var(--body);font-size:13px;line-height:1.4;font-weight:500;color:var(--on-ink-muted);margin-top:4px}
+.care .vat{margin:3px 0 8px}
+.atiers .vat{color:var(--muted);margin:6px 0 10px}
+.plist h3{font-size:19px;margin:14px 0 6px;font-weight:600}
+.plist p{margin:0;color:var(--on-ink-muted);font-size:16px}
+.care{margin-top:48px;padding-top:32px;border-top:1px solid var(--on-ink-line)}
+.care h3{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--on-ink-muted);margin:0 0 18px}
+.care ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.care li{border:1px solid var(--on-ink-line);border-radius:14px;padding:18px 20px}
+.care b{display:block;font-weight:600}
+.care .p{font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.care .p small{font-family:var(--body);font-size:15px;font-weight:500;color:var(--on-ink-muted)}
+.care span.d{display:block;color:var(--on-ink-muted);font-size:15px}
+.fine{font-size:14px;color:var(--on-ink-muted);margin:16px 0 0;max-width:80ch}
+.more{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin:40px 0 0;padding-top:24px;border-top:1px solid var(--on-ink-line)}
+.more p{margin:0;color:var(--on-ink-muted);font-size:15px;max-width:60ch}
+
+/* audit */
+.audit{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:56px;align-items:start}
+.audit .panel{background:var(--accent-soft);border-radius:22px;padding:40px}
+.audit .panel ol{margin:0;padding:0 0 0 22px;display:grid;gap:12px}
+.audit .panel li::marker{font-weight:700;color:var(--accent-ink)}
+.atiers{list-style:none;margin:28px 0 0;padding:22px 0 0;border-top:1px solid var(--accent-line);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.atiers b{display:block;font-weight:600;font-size:15px}
+.atiers .p{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.02em}
+.atiers span.d{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+.audit .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.scope{font-size:14px;color:var(--muted);margin:22px 0 0}
+
+/* werkwijze */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;counter-reset:s}
+.steps li{counter-increment:s;border-top:1.5px solid var(--ink);padding-top:18px}
+.steps li::before{content:counter(s);display:block;font-family:var(--display);font-weight:700;font-size:44px;line-height:1;color:var(--accent);margin-bottom:12px}
+.steps h3{font-family:var(--display);font-size:24px;margin:0 0 6px;font-weight:700;letter-spacing:-.01em}
+.steps p{margin:0;color:var(--muted)}
+
+/* mensen */
+.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:860px}
+.person{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.person .face{flex:none;width:96px;height:96px;border-radius:50%;background:#1E293B;display:block;object-fit:cover}
+.person h3{font-family:var(--display);font-size:24px;margin:0;font-weight:700}
+.person p{margin:2px 0 0;color:var(--muted);font-size:15px}
+
+/* contact */
+.contact{background:var(--accent);color:#fff;border-radius:var(--radius-lg);padding:64px;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:48px;align-items:end}
+.contact h2{color:#fff;margin:0}
+.contact p{margin:16px 0 0;font-size:19px;color:#e6ecfd;max-width:40ch}
+.contact .lines{display:grid}
+.contact a.line{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.35);color:#fff;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:5px;font-size:20px;font-weight:500}
+.contact a.line:first-child{border-top:1px solid rgba(255,255,255,.35)}
+.contact a.line span:last-child{font-size:16px;opacity:.9}
+.contact a.line:focus-visible{outline-color:#fff}
+
+footer{border-top:1px solid var(--line);padding:28px 0 32px;font-size:14px;color:var(--muted);margin-top:96px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+footer .links{display:flex;gap:20px;flex-wrap:wrap}
+footer a[aria-current]{color:var(--ink);text-decoration:none}
+
+/* privacyverklaring en voorwaarden */
+.top .actions.push{margin-left:auto}
+.legal{padding:24px 0 0}
+.legal .doc{max-width:720px}
+.legal h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,5.6vw,72px);line-height:1;letter-spacing:-.035em;margin:0 0 18px}
+.legal .meta{color:var(--muted);font-size:15px;margin:0 0 16px}
+.legal h2{font-family:var(--display);font-weight:700;font-size:26px;line-height:1.15;letter-spacing:-.015em;margin:44px 0 10px}
+.legal p{margin:0 0 14px}
+.legal ul{margin:0 0 14px;padding-left:22px;display:grid;gap:8px}
+.legal li::marker{color:var(--accent)}
+.legal .back{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-weight:600}
+.mobilebar{display:none}
+
+/* mobiel menu */
+.mnav{display:none;position:relative}
+.mnav summary{list-style:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;box-shadow:inset 0 0 0 1.5px var(--ink);font-weight:600;font-size:15px;cursor:pointer;background:var(--card)}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary svg{width:18px;height:18px}
+.mnav[open] summary{background:var(--ink);color:var(--paper)}
+.mnav ul{position:absolute;right:0;top:calc(100% + 8px);z-index:6;list-style:none;margin:0;padding:8px;min-width:210px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(26,24,20,.15)}
+.mnav a{display:block;padding:12px 14px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:500}
+
+/* hover alleen op apparaten met een muis: op touchscreens blijft :hover na een tik hangen.
+   Alles verloopt naar de merkkleur; de tweede knop wordt bij hover dus niet zwart (dan lijkt hij op de eerste) */
+@media (hover:hover){
+  a:hover{color:var(--ink)}
+  .btn:hover{background:var(--accent);color:#fff}
+  .btn.light:hover{background:var(--accent-soft);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--accent)}
+  .btn.onink:hover{background:var(--accent-light);color:var(--ink)}
+  .top .mainnav a:hover{color:var(--accent-ink)}
+  .mnav summary:hover{background:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+  .mnav[open] summary:hover{background:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+  .mnav a:hover{background:var(--accent-soft)}
+  .contact a.line:hover{color:#fff;text-decoration-color:currentColor}
+  footer a:hover{color:var(--ink)}
+  .worklink:hover{border-color:var(--ink)}
+  .worklink:hover .go{background:var(--accent);color:#fff}
+}
+.btn:active{transform:translateY(1px)}
+
+/* animaties: alleen kleur, transform en opacity (geen layout), en niets bij 'minder beweging' */
+@media (prefers-reduced-motion:no-preference){
+  .mnav[open] ul{animation:menu-in .2s ease-out}
+  /* rustig inschuiven bij het scrollen; zonder JavaScript, browsers zonder ondersteuning tonen alles direct */
+  @supports (animation-timeline:view()){
+    .worklink,.prices,.audit .panel,.steps li,.contact{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 240px}
+  }
+}
+@media (prefers-reduced-motion:reduce){.btn:active{transform:none}}
+@keyframes menu-in{from{opacity:0;transform:translateY(-6px)}}
+@keyframes reveal{from{opacity:0;transform:translateY(24px)}}
+
+@media (max-width:1100px){
+  .top .mainnav{gap:18px}
+  .top .actions .btn.light{display:none}
+  .atiers{grid-template-columns:minmax(0,1fr)}
+}
+
+@media (max-width:900px){
+  :root{--gutter:20px}
+  html{scroll-padding-bottom:96px}
+  .top .mainnav,.top .actions{display:none}
+  .mnav{display:block;margin-left:auto}
+  .hero{padding:16px 0 40px}
+  .hero .row{grid-template-columns:minmax(0,1fr);gap:24px}
+  .hero .actions{justify-content:flex-start}
+  .showcase{grid-template-columns:minmax(0,1fr)}
+  .project.big{grid-row:auto}
+  .project.big h3{font-size:30px}
+  .project.big .shot{padding:16px 16px 0}
+  .phone{right:16px;width:28%;border-width:4px;border-radius:12px;bottom:-24px}
+  section.blk{padding:64px 0}
+  .prices,.contact{padding:36px 24px;border-radius:20px}
+  .plist{grid-template-columns:minmax(0,1fr);gap:28px}
+  .plist > li,.plist > li + li{padding:0;border-left:0}
+  .plist > li + li{padding-top:28px;border-top:1px solid var(--on-ink-line)}
+  .amt{font-size:46px}
+  .care ul{grid-template-columns:minmax(0,1fr)}
+  .audit{grid-template-columns:minmax(0,1fr);gap:28px}
+  .audit .panel{padding:28px 22px}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
+  .people{grid-template-columns:minmax(0,1fr)}
+  .worklink{flex-direction:column;align-items:flex-start;gap:20px;padding:28px 22px;border-radius:20px}
+  .contact{grid-template-columns:minmax(0,1fr);gap:28px}
+  footer{margin-top:64px}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .mobilebar{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:5;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--paper);border-top:1px solid var(--line)}
+  .mobilebar .btn{flex:1;min-height:50px;padding:0 12px}
+  .mobilebar .btn.wa{flex:1.4}
+}
+@media (max-width:420px){.steps{grid-template-columns:minmax(0,1fr)}.more .btn{width:100%}}
+
+/* Eigen merk en inhoud: één site, rechtstreeks contact met de maker. */
+.brand{flex:none;color:var(--ink);text-decoration:none;font-family:var(--display);font-size:24px;line-height:.95;font-weight:700;letter-spacing:-.045em;display:inline-flex;align-items:center;min-height:64px}
+.brand .dot{font-size:1.25em}
+.top .mainnav{gap:24px}
+.top .actions{flex:none}
+.hero{padding-top:54px}
+.hero h1{max-width:16ch;font-size:clamp(46px,8.2vw,112px);line-height:.99}
+.hero .kicker{margin-bottom:24px}
+.hero .row{align-items:center}
+.services h3{font-family:var(--display);font-size:29px;font-weight:600;line-height:1.1;letter-spacing:-.025em;margin:20px 0 18px}
+.service-number{color:var(--accent-light);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.prices .kicker{color:var(--accent-light)}
+.services li{display:flex;flex-direction:column;align-items:flex-start}
+.services p{margin-bottom:26px}
+.services a{margin-top:auto;color:var(--on-ink);font-size:15px;font-weight:600;text-underline-offset:5px}
+#werkwijze{padding-top:0}
+.about{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.about-grid{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);gap:80px;align-items:center}
+.about .intro{margin-bottom:20px}
+.about p:not(.kicker){max-width:54ch}
+.textlink{display:inline-block;margin-top:12px;font-weight:600;text-underline-offset:5px}
+.about-note{padding:40px;background:var(--paper-2);border-radius:22px;transform:rotate(-2deg)}
+.about-note .code-mark{display:block;font:600 18px/1.4 ui-monospace,monospace;color:var(--accent);margin-bottom:48px}
+.about-note p{font:600 clamp(28px,3vw,38px)/1.1 var(--display);letter-spacing:-.03em;margin:0 0 24px}
+.about-note>span:last-child{color:var(--muted);font-size:16px}
+.faq-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:80px}
+.faq h2{font-size:clamp(32px,4vw,48px)}
+.questions details{border-top:1px solid var(--line);padding:22px 0}
+.questions details:last-child{border-bottom:1px solid var(--line)}
+.questions summary{list-style:none;cursor:pointer;display:flex;align-items:start;justify-content:space-between;gap:24px;font-weight:600;min-height:30px}
+.questions summary::-webkit-details-marker{display:none}
+.questions summary::after{content:'+';color:var(--accent);font-size:26px;line-height:1;flex:none}
+.questions details[open] summary::after{content:'−'}
+.questions p{color:var(--muted);margin:16px 28px 0 0}
+.contact .kicker{color:#e6ecfd}
+.contact a.line{flex-direction:column;align-items:flex-start;gap:8px}
+.contact a.line span:last-child{font-size:clamp(14px,1.45vw,18px);opacity:1;overflow-wrap:anywhere}
+.contact a.line>span:first-child{display:flex;width:100%;justify-content:space-between;font-size:21px}
+.contact a.line>span:first-child>span{font-size:24px}
+.footer-brand{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.03em;color:var(--ink)}
+.back-home{margin-left:auto}
+/* De inhoud blijft zichtbaar zonder scrollanimaties. */
+.worklink,.prices,.audit .panel,.steps li,.contact{animation:none}
+@media (hover:hover){.brand:hover,.textlink:hover{color:var(--accent)}.services a:hover{color:var(--accent-light)}}
+@media (max-width:1100px){.top .actions{display:none}}
+@media (max-width:900px){
+  .hero{padding-top:24px}.hero h1{font-size:clamp(46px,10vw,84px)}
+  .hero .kicker{font-size:11px;letter-spacing:.04em;margin-bottom:20px}
+  .hero .row{margin-top:28px}.hero .lead{font-size:18px}
+  .about-grid,.faq-grid{grid-template-columns:minmax(0,1fr);gap:36px}
+  .about-note{transform:none;max-width:560px}
+  .about-note .code-mark{margin-bottom:32px}
+  .services h3{font-size:29px}
+  .services p{max-width:58ch}.services a{margin-top:0}
+  .contact a.line span:last-child{font-size:16px}
+  footer .wrap{flex-direction:column;gap:14px}
+}
+@media (max-width:420px){
+  .brand{font-size:22px}.hero .actions{flex-direction:column;align-items:stretch}
+  .hero .actions .btn{padding:0 16px}.worklink .go{font-size:14px;padding:0 18px}
+  .about-note{padding:28px}.back-home{font-size:13px;padding:0 14px}
+}
+
